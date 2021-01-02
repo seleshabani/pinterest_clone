@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}{{pin.title}}{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-4 mt-5 mx-auto">
+            <article class="bg-white rounded shadow">
+                <div class="pin mw-100 overflow-hidden">
+                    <a href="{{path('app_pins_show',{id:pin.id})}}">
+                        <img class="w-100 rounded-top" src="{{ (pin.imagename ? vich_uploader_asset(pin) : asset('build/images/placeholder.png'))| imagine_filter('squared_thumbnail_meduim')}}" alt="{{ pin.title }}" />
+                    </a>
+                </div>
+                <h2 class="ml-3 pt-3 h5"><a class="text-secondary" href="{{path('app_pins_show',{id:pin.id})}}">{{pin.title}}</a></h2>
+                <p class="ml-3 mb-3 text-muted"> <small>{{pin.description}}</small></p>
+
+                <div class="pl-3 pb-3">
+                    <a class="btn btn-light" href="{{path('app_pins_edit',{id:pin.id})}}">Edit</a>  
+                    <a class="btn btn-light" href="#" onclick="event.preventDefault(); confirm('etes-vous sur?') && document.querySelector('#js-form-delete').submit();">Delete</a>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <form id="js-form-delete" action="{{path('app_pins_delete',{id:pin.id})}}" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="csrf_token"  value="{{csrf_token('pin_deletion_' ~ pin.id)}}">
+    </form>
+{% endblock %}

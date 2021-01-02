@@ -84,6 +84,12 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.1"
     },
+    "imagine/imagine": {
+        "version": "1.2.4"
+    },
+    "jms/metadata": {
+        "version": "2.4.0"
+    },
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
@@ -92,6 +98,19 @@
     },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.1.1"
+    },
+    "liip/imagine-bundle": {
+        "version": "1.8",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.8",
+            "ref": "5a5bdc2d0e2533ed6935d5ae562f2b318a8fc1ee"
+        },
+        "files": [
+            "./config/packages/liip_imagine.yaml",
+            "./config/routes/liip_imagine.yaml"
+        ]
     },
     "monolog/monolog": {
         "version": "2.2.0"
@@ -430,6 +449,9 @@
     "symfony/string": {
         "version": "v5.2.1"
     },
+    "symfony/templating": {
+        "version": "v5.2.1"
+    },
     "symfony/test-pack": {
         "version": "v1.0.7"
     },
@@ -505,6 +527,28 @@
             "./config/routes/dev/web_profiler.yaml"
         ]
     },
+    "symfony/webpack-encore-bundle": {
+        "version": "1.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.6",
+            "ref": "f362ed8e8aa99a8cb216e6bdb2ac833dfb7643dd"
+        },
+        "files": [
+            "./assets/app.js",
+            "./assets/bootstrap.js",
+            "./assets/controllers.json",
+            "./assets/controllers/hello_controller.js",
+            "./assets/styles/app.css",
+            "./config/packages/assets.yaml",
+            "./config/packages/prod/webpack_encore.yaml",
+            "./config/packages/test/webpack_encore.yaml",
+            "./config/packages/webpack_encore.yaml",
+            "./package.json",
+            "./webpack.config.js"
+        ]
+    },
     "symfony/yaml": {
         "version": "v5.2.1"
     },
@@ -513,6 +557,18 @@
     },
     "twig/twig": {
         "version": "v3.1.1"
+    },
+    "vich/uploader-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "c4f5755b37fb65b9c6a3cbdae91205c15a137ed4"
+        },
+        "files": [
+            "./config/packages/vich_uploader.yaml"
+        ]
     },
     "webmozart/assert": {
         "version": "1.9.1"

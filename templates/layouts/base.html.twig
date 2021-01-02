@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            {{encore_entry_link_tags('app')}}
+        {% endblock %}
+    </head>
+    <body>
+     {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{type}}" role="alert">
+                    <p>{{message}}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {{ include('layouts/partials/_nav.html.twig')}}
+        <main role="main" class="container">
+            {% block body %}{% endblock %}
+        </main>
+        {% block javascripts %}
+            {{encore_entry_script_tags('app')}}
+        {% endblock %}
+    </body>
+</html>

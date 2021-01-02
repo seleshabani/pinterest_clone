@@ -1,0 +1,9 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %} Panterest | pins | edit | {{pin.id}}{% endblock %}
+
+{% block body %}
+
+     {{include('layouts/partials/_form.html.twig',{form_submit_text:'edit pin'})}}
+
+{% endblock %}

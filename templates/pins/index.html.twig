@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %} Panterest {% endblock %}
+
+{% block body %}
+
+    <h1 class="mb-4 text-center text-muted">{{pluralize(pins | length,'pin','pins')}}</h1>
+
+    {% for row in pins|batch(3)%}
+    <div class="row">
+        {% for pin in row%}
+            <div class="col-md-4">
+                <article class="bg-white rounded shadow">
+                    <div class="pin mw-100 overflow-hidden">
+                        <a href="{{path('app_pins_show',{id:pin.id})}}">
+                            <img class="w-100 rounded-top" src="{{ (pin.imagename ? vich_uploader_asset(pin) : asset('build/images/placeholder.png'))| imagine_filter('squared_thumbnail_meduim')}}" alt="{{ pin.title }}" />
+                        </a>
+                    </div>
+                    <h2 class="ml-3 pt-3 h5"><a class="text-secondary" href="{{path('app_pins_show',{id:pin.id})}}">{{pin.title}}</a></h2>
+                   <p class="ml-3 mb-3 text-muted"> <small>{{pin.description}}</small></p>
+                </article>
+            </div>
+            
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+{% endblock %}
