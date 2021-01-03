@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Pin;
+use App\Entity\User;
 use App\Form\PinType;
 use App\Repository\PinRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -21,6 +23,7 @@ class PinsController extends AbstractController
     public function index(PinRepository $pinRepo): Response
     {
         $pins = $pinRepo->findBy([],['createdAt'=>'DESC']);
+
         return $this->render('pins/index.html.twig', [
             'pins' => $pins,
         ]);
@@ -42,6 +45,7 @@ class PinsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $pin->setUser($this->getUser());
             $em->persist($pin);
             $em->flush();
             $this->addFlash('success','Pin créé avec succée');
@@ -57,6 +61,7 @@ class PinsController extends AbstractController
         $form = $this->createForm(PinType::class,$pin);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $em->flush();
             $this->addFlash('success','Pin modifié avec succée');
             return $this->redirectToRoute('app_home');
