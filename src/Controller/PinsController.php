@@ -9,8 +9,6 @@ use App\Repository\PinRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,12 +43,12 @@ class PinsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $pin->setUser($this->getUser());
+            $pin->setUser($this->getUser()); 
             $em->persist($pin);
             $em->flush();
             $this->addFlash('success','Pin créé avec succée');
             return $this->redirectToRoute('app_home');
-        } 
+        }
         return $this->render('pins/create.html.twig',['form'=>$form->createView()]);
     }
     /**
